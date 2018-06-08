@@ -1,15 +1,30 @@
 body{
     margin: 0px;
+
 }
 canvas{
-
-background: beige;
-
-
-display: block;
+    background: beige;    
+    display: block;
 }
-button{
+
+
+
+.icon{
+    width:2em; height: 2em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
+
+ #tubiao{
     position: fixed;
-    left:20px;
-    top:20px;
-}
+    left: 0px;
+    top: 0px;
+    margin: 20px 20px;
+ }
+ #tubiao #pen{
+margin: 0 20px;
+ }
+ #tubiao #eraser{
+    margin: 0 20px;
+ }
