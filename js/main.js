@@ -15,8 +15,9 @@ function drawLine(x1,y1,x2,y2){    //连线函数
     context=xxx.getContext('2d');
     context.beginPath();
     context.moveTo(x1,y1);
-    context.lineWidth=4;
     context.lineTo(x2,y2);
+    
+    
     context.stroke();
     context.closePath(); 
 }
@@ -24,11 +25,19 @@ function drawLine(x1,y1,x2,y2){    //连线函数
 
 var usingEraser=false
     pen.onclick=function(){
-     console.log("wo laile ")
+    context.strokeStyle='black'
     usingEraser=false
+    pen.classList.add('active')
+    red.classList.remove('active')
+    blue.classList.remove('active')
+    green.classList.remove('active')
+    eraser.classList.remove('active')
 }
-    earser.onclick=function(){
+    eraser.onclick=function(){
     usingEraser=true
+    eraser.classList.add('active')
+    pen.classList.remove('active')
+    
 }
 
 if(document.body.ontouchstart !==undefined){
@@ -38,7 +47,7 @@ painting =true
     var y=a.touches[0].clientY
     
     if(usingEraser){
-        context.clearRect(x,y,20,20)
+        context.clearRect(x,y,40,40)
     }else{
         lastPoint={'x':x,'y':y}
     context.beginPath()
@@ -53,7 +62,7 @@ if (painting){
         var y=a.touches[0].clientY
         newPoint={'x':x,'y':y}
         if(usingEraser){
-            context.clearRect(x,y,20,20)
+            context.clearRect(x,y,40,40)
         }else{
             context.beginPath()
             context.arc(x,y,0.2,0,Math.PI*2)
@@ -105,4 +114,57 @@ yyy.onmousemove=function(a){
 yyy.onmouseup =function(a){
     painting =false
 }
+}
+
+red.onclick=function(){
+    context.strokeStyle='red'
+    red.classList.add('active')
+    blue.classList.remove('active')
+    green.classList.remove('active')
+    pen.classList.remove('active')
+    eraser.classList.remove('active')
+    usingEraser=false
+}
+blue.onclick=function(){
+    context.strokeStyle='blue'
+    red.classList.remove('active')
+    blue.classList.add('active')
+    green.classList.remove('active')
+    pen.classList.remove('active')
+    eraser.classList.remove('active')
+    usingEraser=false
+}
+green.onclick=function(){
+    context.strokeStyle='green'
+    red.classList.remove('active')
+    blue.classList.remove('active')
+    green.classList.add('active')
+    pen.classList.remove('active')
+    eraser.classList.remove('active')
+    usingEraser=false
+}
+xi.onclick=function(){
+    xi.classList.add('active')
+    eraser.classList.remove('active')
+    chu.classList.remove('active')
+    context.lineWidth=4;
+    usingEraser=false
+}
+chu.onclick=function(){
+    chu.classList.add('active')
+    eraser.classList.remove('active')
+   xi.classList.remove('active')
+   context.lineWidth=10;
+   usingEraser=false
+}
+shanchu.onclick=function(){
+context.clearRect(0,0,yyy.width,yyy.height)
+}
+baocun.onclick=function(){
+   var url=yyy.toDataURL("image/png")
+   var a =document.createElement('a')
+   document.body.appendChild(a)
+   a.href=url
+   a.download="下载了"
+   a.click() 
 }
